@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.demo;
+package com.example.demo.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,6 +46,10 @@ public class DefaultController {
     @GetMapping("/403")
     public String error403() {
         return "/error/403";
+    }
+    @GetMapping("/department")
+    public String loadDepartmentPage(){
+        return "/department";
     }
     
 }

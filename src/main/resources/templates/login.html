@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>login</title>
+        <div th:replace="fragments/header :: header-css"/>
+    </head>
+    <body>
+        <div th:replace="fragments/header :: header"/>
+        <div class="container">
+            <form th:action="@{/login}" method="post">
+                <fieldset>
+                    <h1> Please LogIn </h1>
+                    <div class="form-group">
+
+                        <input type="text" name="username" placeholder="UserName" 
+                               required="true" class ="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" placeholder="Password" 
+                               required="true" class ="form-control"/>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="submit" class="btn btn-lg btn-primary" value="Sign In" />
+                        </div>
+                        <div class="col-md-6"/>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </body>
+</html>

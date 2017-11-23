@@ -7,7 +7,11 @@ package com.example.demo.controllers;
 
 import com.example.demo.entities.Department;
 import com.example.demo.repositories.DepartmentRepository;
+import java.awt.PageAttributes;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,11 +24,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class DepartmentController {
     @Autowired
     private DepartmentRepository departmentRepository;
-    @PostMapping("/department")
+    @PostMapping(value = "/department")
     public void saveDepartment(@RequestBody Department department){
+        System.out.println("came");
         departmentRepository.save(department);
-        
-        
+    }
+    @GetMapping("/departments")
+    public List<Department> getAllDepartments(){
+        System.out.println("list called");
+        return departmentRepository.findAll();
     }
     
 }

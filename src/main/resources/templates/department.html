@@ -1,14 +1,92 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-         <div th:replace="fragments/header :: header-css"/>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head><meta charset="utf-8" />
+        <title>Spring Boot + JPA + Datatables</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
+        <div th:replace="fragments/header :: header-css"/>
     </head>
     <body>
-        <div th:replace="fragments/header :: header"/>    </body>
+        <div th:replace="fragments/header :: header"/> 
+        <div class="container">
+            <h1> Department Details </h1>
+            <form class="form-horizontal" id="submitForm">
+                <fieldset>
+                    <div class="row">
+                        <div class="form-group">
+                            <label>Department Name:</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="departmentName"  class="form-control" style="margin-left: 20px;" />
+                        </div>
+                        <button type="submit" id="save" class="btn bg-primary"  style="height: 40px; width: 100px; margin-left: 40px;">Save </button>
+                    </div>
+                </fieldset>
+
+            </form>
+            <button id="departmentList" >Show List</button>
+            <h1>Department Table</h1>
+            <table class="table table-striped" id="dptlst">
+                <thead>
+                    <tr>
+                        <th>Department Id</th>
+                        <th>Department Name</th>
+                        <!--<th>Action</th>-->
+                    </tr>
+                </thead>
+               
+            </table>
+
+        </div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="//cdn.datatables.net/1.9.1/js/jquery.dataTables.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                var department = {
+
+                };
+                $('#submitForm').submit(function (event) {
+                    event.preventDefault();
+                    var departmentName = $('#departmentName').val();
+                    department.name = departmentName;
+                    $.ajax({
+                        url: "/department",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(department),
+                        dataType: 'json',
+                        success: function (response) {
+                            $('#departmentName').empty();
+                        },
+                        error: function (response) {
+                            //  $('#departmentName').empty();
+                        }
+                    })
+                })
+
+                $('#departmentList').click(function () {
+                    var departments = [];
+                    // alert('im clicked');
+                    $.ajax({
+                        url: "/departments",
+                        type: "GET",
+                        success: function (response) {
+                            departments = response;
+                            alert(departments[0].name);
+                            var table = $('#dptlst').DataTable({
+                                "aaData": departments,
+                                "aoColumns": [
+                                    {"mDataProp": "departmentId"},
+                                    {"mDataProp": "name"}
+                                ]
+                            });
+                        }
+                    })
+                })
+            });
+
+
+
+        </script>
+    </body>
 </html>

@@ -1,0 +1,11 @@
+{
+    "elements": {},
+    "attributes": {
+        "name": {
+            "context": "meta"
+        },
+        "th:fragment": {
+            "context": "div"
+        }
+    }
+}

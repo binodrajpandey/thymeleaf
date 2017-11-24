@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head><meta charset="utf-8" />
         <title>Spring Boot + JPA + Datatables</title>
@@ -17,7 +16,9 @@
                             <label>Department Name:</label>
                         </div>
                         <div class="form-group">
+                            <input type="hidden" id="departmentId" />
                             <input type="text" id="departmentName"  class="form-control" style="margin-left: 20px;" />
+
                         </div>
                         <button type="submit" id="save" class="btn bg-primary"  style="height: 40px; width: 100px; margin-left: 40px;">Save </button>
                     </div>
@@ -31,10 +32,10 @@
                     <tr>
                         <th>Department Id</th>
                         <th>Department Name</th>
-                        <!--<th>Action</th>-->
+                        <th>Action</th>
                     </tr>
                 </thead>
-               
+
             </table>
 
         </div>
@@ -42,14 +43,21 @@
         <script src="//cdn.datatables.net/1.9.1/js/jquery.dataTables.min.js"></script>
         <script>
             $(document).ready(function () {
-                var department = {
-
-                };
+               
                 $('#submitForm').submit(function (event) {
                     event.preventDefault();
-                    var departmentName = $('#departmentName').val();
+                    saveDepartment();
+                   
+                })
+               
+            });
+          function  saveDepartment(){
+               var department = {};
+              var departmentName = $('#departmentName').val();
+                    var departmentId = $('#departmentId').val();
                     department.name = departmentName;
-                    $.ajax({
+                    department.departmentId = departmentId;
+                 $.ajax({
                         url: "/department",
                         type: "POST",
                         contentType: "application/json",
@@ -57,36 +65,70 @@
                         dataType: 'json',
                         success: function (response) {
                             $('#departmentName').empty();
+                            loadDataTable();
                         },
                         error: function (response) {
-                            //  $('#departmentName').empty();
+                            $('#departmentName').empty();
+                             loadDataTable();
                         }
                     })
+                    loadDataTable();
+            }
+
+            function edit(buttonRef) {
+                var btn = $(buttonRef);
+                var row = btn.closest('tr');
+                console.log(row);
+                var departmentId = row.find('td:nth-child(1)').text();
+                var departmentName = row.find('td:nth-child(2)').text();
+                $('#departmentName').val(departmentName);
+                $('#departmentId').val(departmentId);
+
+            }
+            function deleteDepartment(buttonRef) {
+                var btn=$(buttonRef);
+                var row=btn.closest('tr');
+                var departmentId = row.find('td:nth-child(1)').text();
+                console.log('called');
+                $.ajax({
+                    url:'/departments?departmentId='+departmentId,
+                    type: 'DELETE',
+                    success: function(response){
+                        loadDataTable();
+                    }
+                    
                 })
-
-                $('#departmentList').click(function () {
-                    var departments = [];
-                    // alert('im clicked');
-                    $.ajax({
-                        url: "/departments",
-                        type: "GET",
-                        success: function (response) {
-                            departments = response;
-                            alert(departments[0].name);
-                            var table = $('#dptlst').DataTable({
-                                "aaData": departments,
-                                "aoColumns": [
-                                    {"mDataProp": "departmentId"},
-                                    {"mDataProp": "name"}
-                                ]
-                            });
-                        }
-                    })
+            }
+            
+            function loadDataTable(){
+                console.log('loading datatable');
+                var departments = [];
+                $.ajax({
+                    url: "/departments",
+                    type: "GET",
+                    success: function (response) {
+                        departments = response;
+//                            alert(departments[0].name);
+                        var table = $('#dptlst').DataTable({
+                            "aaData": departments,
+                            "aoColumns": [
+                                {"mDataProp": "departmentId"},
+                                {"mDataProp": "name"}
+                            ],
+                            "bDestroy": true
+                        });
+                        $.each(table.find('tbody tr'), function (index, val) {
+                            var tr = $(val);
+                            var td1 = $('<td/>');
+                            var td2 = $('<td/>');
+                            td1.html('<button class="btn btn-default" onclick="edit(this)">Edit</button>');
+                            tr.append(td1);
+                            td2.html('<button class="btn btn-danger" onclick="deleteDepartment(this)">Delete</button>');
+                            tr.append(td2);
+                        });
+                    }
                 })
-            });
-
-
-
+            }
         </script>
     </body>
 </html>

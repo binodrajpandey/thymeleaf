@@ -11,7 +11,7 @@ e. mysql-connector
 5. Configure database in application.yml or in application.properties file.
 6. Run and see result using postman
 
-FrontEnd.
+#FrontEnd.
 You are done in back-end, now lets do below steps for front-end.
 1. create home.html file in templates folder and modify it as per your need.
 2. Create Default Controller and write following code:
@@ -21,7 +21,7 @@ public class DefaultController {
         return "home";
         
     }
-    this will open your home.html file.
+    this will open your home.html page.
 3. Now, lets create template for our project. for this we are going to create header for navigation bar. So create header.html file under templates/fragments.
 4. Write following code
 <!DOCTYPE html>
@@ -65,3 +65,16 @@ public class DefaultController {
 </body>
 
 </html>
+
+5. now in home.html write following code:
+<div th:replace="fragments/header :: header-css" /> on header
+<div th:replace="fragments/header :: header" /> on body 
+and don't forget to include xmlns for thymeleaf in html tag.
+6. now create user.html page and write same codes in previous step.
+7. In DefaultController.java file write following code:
+@GetMapping("/user")
+    public String user() {
+        return "/user";
+    }
+    8. similary you can create department.html, student.html, admin.html, about.html etc and write associated controller handler mapping
+

@@ -67,8 +67,8 @@ public class DefaultController {
 </html>
 
 5. now in home.html write following code:
-<div th:replace="fragments/header :: header-css" /> on header
-<div th:replace="fragments/header :: header" /> on body 
+    <div th:replace="fragments/header :: header-css" /> on header
+    <div th:replace="fragments/header :: header" /> on body 
 and don't forget to include xmlns for thymeleaf in html tag.
 6. now create user.html page and write same codes in previous step.
 7. In DefaultController.java file write following code:
@@ -76,5 +76,5 @@ and don't forget to include xmlns for thymeleaf in html tag.
     public String user() {
         return "/user";
     }
-    8. similary you can create department.html, student.html, admin.html, about.html etc and write associated controller handler mapping
+ 8. similary you can create department.html, student.html, admin.html, about.html etc and write associated controller handler mapping
 

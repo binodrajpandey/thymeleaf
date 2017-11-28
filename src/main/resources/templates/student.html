@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Student management page</title>
+	<div th:replace="fragments/header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+<div class="container">
+<h1>Student management page</h1>
+<form>
+	<div id="successMessage" style="color: green;"></div>
+<div class="col-md-4">
+<div class="form-group">
+	<input type="text" name="firstName" id="firstName" placeholder="Enter First Name" class="form-control" />
+</div>
+
+<div class="form-group">
+	<input type="text" name="lastName" id="lastName" placeholder="Enter Last Name" class="form-control" />
+</div>
+
+
+	 <label for="sel1">Select Department Name (select one):</label>
+	 <select id="select">
+	 <option selected="selected">blank</option></select>
+     
+</div>
+	</form>
+	<button type="Submit" class="btn btn-warning" style="width: 100px; margin-left: 10px;">Cancel</button>
+
+	
+<button type="Submit" onclick="save()" class="btn btn-primary" style="width: 100px; margin-left: 10px;">Save</button>
+
+
+</div>
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	var sth=[];
+	var str='';
+		$.ajax({
+			url: "/departments/names",
+			type: 'GET',
+			success: function(response){
+				
+				   $.each(response,function(i,item){
+				   	$("#select").append('<option  value="item.value()">'+item+'</option>');
+				  
+				   });
+				   $mySelect.html(str);
+
+			},
+			error: function(response){
+				alert('error');
+
+			}
+		});
+	})
+
+
+	function save(){
+		
+		var student={};
+		student.firstName=$('#firstName').val();
+		student.lastName=$('#lastName').val();
+		student.departmentName=$('#select').find(':selected').text();
+	
+		$.ajax({
+			url: "/students",
+			type: 'POST',
+			contentType: 'application/json',
+			 data: JSON.stringify(student),
+			 dataType: 'json',
+			success: function(response){
+				$('#successMessage').html('<h1>Saved</h1>');
+			
+			},
+			error: function(response){
+				console.log(response);
+
+
+			}
+		})
+		
+	}
+	
+</script>
+</body>
+</html>

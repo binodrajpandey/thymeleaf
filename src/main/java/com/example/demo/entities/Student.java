@@ -1,6 +1,7 @@
 
 package com.example.demo.entities;
 
+import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +16,7 @@ import javax.persistence.ManyToOne;
  * @author binod
  */
 @Entity
-public class Student {
+public class Student implements Serializable {
     @Id
     @GeneratedValue
     @Column
@@ -25,7 +26,7 @@ public class Student {
     @Column
     private String lastName;
     @JoinColumn(name = "department_id")
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Department department;
 
     public Long getId() {

@@ -4,6 +4,7 @@ import com.example.demo.entities.Department;
 import com.example.demo.repositories.DepartmentRepository;
 import java.awt.PageAttributes;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +29,14 @@ public class DepartmentController {
     public List<Department> getAllDepartments(){
         System.out.println("list called");
         return departmentRepository.findAll();
+    }
+    @GetMapping("/departments/names")
+    public List<String> getAllDepartmentNames(){
+        System.out.println("list called");
+        return departmentRepository.findAll()
+                .stream()
+                .map(d->d.getName())
+                .collect(Collectors.toList());
     }
     
      @PostMapping(value = "/department")

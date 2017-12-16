@@ -15,7 +15,7 @@ e. mysql-connector
 
 ### Step2: FrontEnd Setup.
 You are done in back-end, now lets do following steps for front-end.
-1. Create different html files like home.html, about.html, department.html, login.html etc file in templates folder under src/main/resources, and modify it as per your need.</br>
+1. Create different html files like home.html, about.html, department.html, login.html etc file in templates folder under `src/main/resources`, and modify it as per your need.</br>
 2. Create Default Controller and write following code:</br>
 public class DefaultController {
     @GetMapping("/")

@@ -38,10 +38,10 @@ You are done in back-end, now lets do following steps for front-end.
    ` </div>`</br>
 `</head>`</br>
 `<body>`</br>
-    <div th:fragment="header"></br>
-        <nav class="navbar navbar-expand-sm bg-primary navbar-dark"></br>
-            <!-- Brand/logo -->
-            <a class="navbar-brand" href="#">Logo</a></br>
+   ` <div th:fragment="header">`</br>
+       ` <nav class="navbar navbar-expand-sm bg-primary navbar-dark">`</br>
+           ` <!-- Brand/logo -->`
+            `<a class="navbar-brand" href="#">Logo</a>`</br>
 
             <!-- Links -->
             <ul class="navbar-nav">

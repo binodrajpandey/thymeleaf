@@ -24,19 +24,19 @@ You are done in back-end, now lets do following steps for front-end.
         
    ` }`</br>
     this will open your home.html page.
-3. Now, lets create template for our project. for this we are going to create header for navigation bar. So create header.html file under templates/fragments.
+3. Now, lets create template for our project. for this we are going to create header for navigation bar. </br>So create header.html file under `templates/fragments`.
 4. Write following code
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Bootstrap 4 Example</title>
-        <meta charset="utf-8" />
-    <div th:fragment="header-css">
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
+`<!DOCTYPE html>`</br>
+`<html xmlns:th="http://www.thymeleaf.org">`</br>
+    `<head>`</br>
+       ` <title>Bootstrap 4 Example</title>`</br>
+        `<meta charset="utf-8" />`</br>
+    `<div th:fragment="header-css">`</br>
+       ` <meta name="viewport" content="width=device-width, initial-scale=1" />`</br>
+        `<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />`</br>
      
-    </div>
-</head>
+   ` </div>`</br>
+`</head>`</br>
 <body>
     <div th:fragment="header">
         <nav class="navbar navbar-expand-sm bg-primary navbar-dark">

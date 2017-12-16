@@ -44,29 +44,29 @@ You are done in back-end, now lets do following steps for front-end.
             `<a class="navbar-brand" href="#">Logo</a>`</br>
 
             <!-- Links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/home">Home</a>
-                </li>
+            `<ul class="navbar-nav">`
+                `<li class="nav-item">`
+                    `<a class="nav-link" href="/home">Home</a>`
+                `</li>`
 
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin">Admin</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/user">User</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/department">Department</a>
-                </li>
+                `<li class="nav-item">`
+                    `<a class="nav-link" href="/admin">Admin</a>`
+                `</li>`
+                `<li class="nav-item">`
+                    `<a class="nav-link" href="/user">User</a>`
+                `</li>`
+               ` <li class="nav-item">`
+                    `<a class="nav-link" href="/department">Department</a>`
+                `</li>`
 
-            </ul>
+            `</ul>`
 
-                   </nav>
+                `   </nav>`
 
-    </div>
-</body>
+   ` </div>`
+`</body>`
 
-</html></br>
+`</html>`</br>
 
 5. Now in home.html write following code:</br>
    ` <div th:replace="fragments/header :: header-css" /> ` inside header section </br>

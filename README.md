@@ -1,4 +1,6 @@
 # spring web application
+
+## Step1: Backend Project Setup
 1. Create spring-boot-intializer project with dependencies:
 a. spring-security
 b. spring-boot-devtools
@@ -11,7 +13,7 @@ e. mysql-connector
 5. Configure database in application.yml or in application.properties file.
 6. Run and see result using postman
 
-#FrontEnd.
+## Step2: FrontEnd Setup.
 You are done in back-end, now lets do below steps for front-end.
 1. create home.html file in templates folder and modify it as per your need.
 2. Create Default Controller and write following code:

@@ -69,7 +69,7 @@ You are done in back-end, now lets do following steps for front-end.
 </html></br>
 
 5. Now in home.html write following code:</br>
-   ` <div th:replace="fragments/header :: header-css" /> ` inside header section
-   ` <div th:replace="fragments/header :: header" /> ` inside body section 
-and don't forget to include xmlns for thymeleaf in html tag.
+   ` <div th:replace="fragments/header :: header-css" /> ` inside header section </br>
+   ` <div th:replace="fragments/header :: header" /> ` inside body section </br>
+and don't forget to include xmlns for thymeleaf in html tag.</br>
 Similarly write same code for every page.

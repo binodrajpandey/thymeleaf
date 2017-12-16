@@ -17,12 +17,12 @@ e. mysql-connector
 You are done in back-end, now lets do following steps for front-end.
 1. Create different html files like home.html, about.html, department.html, login.html etc file in templates folder under `src/main/resources`, and modify it as per your need.</br>
 2. Create Default Controller and write following code:</br>
-public class DefaultController {
-    @GetMapping("/")
-    public String home1(){
-        return "home";
+`public class DefaultController {`</br>
+   ` @GetMapping("/")`</br>
+   ` public String home1(){`</br>
+        `return "home";`</br>
         
-    }
+   ` }`</br>
     this will open your home.html page.
 3. Now, lets create template for our project. for this we are going to create header for navigation bar. So create header.html file under templates/fragments.
 4. Write following code

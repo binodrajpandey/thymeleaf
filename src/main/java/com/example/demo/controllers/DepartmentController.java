@@ -41,6 +41,10 @@ public class DepartmentController {
     
      @PostMapping(value = "/department")
     public void saveDepartment(@RequestBody Department department){
+//         vehicleInfoValidator.validate(toSave, errors);
+//            if (errors.hasErrors()) {
+//                return new ResponseEntity<>(new ApiErrorResource(errors), HttpStatus.UNPROCESSABLE_ENTITY);
+//            }
         System.out.println("came with id"+department.getDepartmentId());
         if(department.getDepartmentId()==null){
             departmentRepository.save(department);

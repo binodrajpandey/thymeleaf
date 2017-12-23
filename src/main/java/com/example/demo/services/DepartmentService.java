@@ -5,7 +5,9 @@
  */
 package com.example.demo.services;
 
+import com.example.demo.dtos.DepartmentDTO;
 import com.example.demo.entities.Department;
+import java.util.List;
 import org.springframework.validation.BindingResult;
 
 /**
@@ -14,5 +16,6 @@ import org.springframework.validation.BindingResult;
  */
 public interface DepartmentService {
     void saveDepartment(Department department,BindingResult errors);
+    List<DepartmentDTO> findAllDepartments();
     
 }

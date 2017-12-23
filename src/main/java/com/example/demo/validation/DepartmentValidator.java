@@ -25,7 +25,7 @@ public class DepartmentValidator implements Validator {
     @Override
     public void validate(Object o, Errors errors) {
         Department department=(Department) o;
-        if(department.getName()==null){
+        if(department.getDepartmentName()==null){
              errors.rejectValue("department name", "error.departmentName.empty", "Department is required.");
         }
     }

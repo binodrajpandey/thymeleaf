@@ -1,11 +1,16 @@
 
 package com.example.demo.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.Generated;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -18,8 +23,9 @@ public class Department {
     @Column
     private Long departmentId;
     @Column
-    private String name;
-
+    private String departmentName;
+@OneToMany(mappedBy = "department",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    List<Student> studentList=new ArrayList<>();
     public Long getDepartmentId() {
         return departmentId;
     }
@@ -28,12 +34,22 @@ public class Department {
         this.departmentId = departmentId;
     }
 
-    public String getName() {
-        return name;
+    public String getDepartmentName() {
+        return departmentName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
     }
+
+    public List<Student> getStudentList() {
+        return studentList;
+    }
+
+    public void setStudentList(List<Student> studentList) {
+        this.studentList = studentList;
+    }
+
+  
     
 }

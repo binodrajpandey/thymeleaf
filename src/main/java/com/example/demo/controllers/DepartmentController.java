@@ -2,11 +2,11 @@ package com.example.demo.controllers;
 
 import com.example.demo.entities.Department;
 import com.example.demo.repositories.DepartmentRepository;
-import java.awt.PageAttributes;
+import com.example.demo.services.DepartmentService;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,18 +24,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class DepartmentController {
     @Autowired
     private DepartmentRepository departmentRepository;
+    @Autowired
+    private DepartmentService departmentService;
    
     @GetMapping("/departments")
-    public List<Department> getAllDepartments(){
-        System.out.println("list called");
-        return departmentRepository.findAll();
+    public ResponseEntity<?> getAllDepartments(){
+    return ResponseEntity.ok(departmentService.findAllDepartments());
+
     }
     @GetMapping("/departments/names")
     public List<String> getAllDepartmentNames(){
         System.out.println("list called");
         return departmentRepository.findAll()
                 .stream()
-                .map(d->d.getName())
+                .map(d->d.getDepartmentName())
                 .collect(Collectors.toList());
     }
     
@@ -50,7 +52,7 @@ public class DepartmentController {
             departmentRepository.save(department);
         }else{
             Department newDepartment=departmentRepository.findOne(department.getDepartmentId());
-            newDepartment.setName(department.getName());
+            newDepartment.setDepartmentName(department.getDepartmentName());
             
         }
     }

@@ -25,8 +25,10 @@ public class Student implements Serializable {
     private String firstName;
     @Column
     private String lastName;
+    @Column(name = "address")
+    private String address;
     @JoinColumn(name = "department_id")
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne
     private Department department;
 
     public Long getId() {
@@ -59,6 +61,14 @@ public class Student implements Serializable {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
     
 }

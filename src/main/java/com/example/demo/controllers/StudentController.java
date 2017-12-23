@@ -54,7 +54,6 @@ public class StudentController {
    }
    
    @PutMapping("/students")
-
    public ResponseEntity<?> deleteStudent(@RequestParam Long studentId,@RequestBody StudentDTO dto){
        Student oldStudent=studentRepository.findOne(studentId);
        oldStudent.setAddress(dto.getAddress());
@@ -63,7 +62,7 @@ public class StudentController {
       return ResponseEntity.ok("Updated");
    }
    
-   @DeleteMapping("/departments")
+   @DeleteMapping("/students")
    public ResponseEntity<?> deleteStudent(@RequestParam Long studentId ){
        studentRepository.delete(studentId);
        return ResponseEntity.ok("Deleted");

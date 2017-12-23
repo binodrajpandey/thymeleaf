@@ -55,7 +55,7 @@
                var department = {};
               var departmentName = $('#departmentName').val();
                     var departmentId = $('#departmentId').val();
-                    department.name = departmentName;
+                    department.departmentName = departmentName;
                     department.departmentId = departmentId;
                  $.ajax({
                         url: "/department",
@@ -108,12 +108,12 @@
                     type: "GET",
                     success: function (response) {
                         departments = response;
-//                            alert(departments[0].name);
+//                            alert(departments[0].departmentName);
                         var table = $('#dptlst').DataTable({
                             "aaData": departments,
                             "aoColumns": [
                                 {"mDataProp": "departmentId"},
-                                {"mDataProp": "name"}
+                                {"mDataProp": "departmentName"}
                             ],
                             "bDestroy": true
                         });

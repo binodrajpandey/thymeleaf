@@ -3,6 +3,7 @@ package com.example.demo.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +16,7 @@ import javax.persistence.ManyToOne;
  * @author binod
  */
 @Entity
-public class Student {
+public class Student implements Serializable {
     @Id
     @GeneratedValue
     @Column
@@ -27,6 +28,7 @@ public class Student {
     @Column(name = "address")
     private String address;
     
+    @JsonBackReference
     @JoinColumn(name = "department_id")
     @ManyToOne
     private Department department;

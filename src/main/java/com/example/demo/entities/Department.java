@@ -1,9 +1,9 @@
 
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.Generated;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,6 +24,8 @@ public class Department {
     private Long departmentId;
     @Column
     private String departmentName;
+    
+    @JsonManagedReference
 @OneToMany(mappedBy = "department",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     List<Student> studentList=new ArrayList<>();
     public Long getDepartmentId() {
